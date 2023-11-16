@@ -1,0 +1,3 @@
+[submodule "fluentforwardexporter"]
+	path = fluentforwardexporter
+	url = git@github.com:r0mdau/fluentforwardexporter.git
