@@ -1,3 +1,6 @@
 [submodule "fluentforwardexporter"]
 	path = fluentforwardexporter
 	url = git@github.com:r0mdau/fluentforwardexporter.git
+[submodule "fluentforwardgo"]
+	path = fluentforwardgo
+	url = https://github.com/IBM/fluent-forward-go

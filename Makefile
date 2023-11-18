@@ -33,3 +33,7 @@ generate-logs:
 	@echo ">> generating logs"
 	./scripts/generate-logs.sh 100 >> testdata/access.log
 .PHONY:generate-logs
+
+prepare:
+	docker run -d --name fluent --rm -p 127.0.0.1:24224:24224 fluent/fluent-bit /fluent-bit/bin/fluent-bit -i forward -o stdout -p format=json_lines -f 1
+.PHONY:prepare

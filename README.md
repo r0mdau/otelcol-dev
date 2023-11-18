@@ -57,3 +57,21 @@ How-to generate the `otelcol-dev` content the first time ([doc](https://opentele
 ```bash
 ocb --config scripts/builder-config.yaml
 ```
+
+Vscode debug config `.vscode/launch.json`
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Package",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceRoot}",
+            "args": ["--config", "${workspaceRoot}/testdata/config.yaml"]
+        }
+    ]
+}
+```
