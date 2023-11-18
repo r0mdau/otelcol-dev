@@ -15,7 +15,7 @@ exporters:
     verbosity: detailed
   fluentforward:
     endpoint: localhost:24224
-    timeout: 10s
+    connection_timeout: 10s
     tag: nginx
     default_labels_enabled:
       time: true
