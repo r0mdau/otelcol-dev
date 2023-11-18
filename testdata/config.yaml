@@ -17,6 +17,7 @@ exporters:
     endpoint: localhost:24224
     connection_timeout: 10s
     tag: nginx
+    compress_gzip: true
     default_labels_enabled:
       time: true
 
