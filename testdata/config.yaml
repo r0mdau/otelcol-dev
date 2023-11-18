@@ -16,6 +16,8 @@ exporters:
   fluentforward:
     endpoint: localhost:24224
     timeout: 10s
+    default_labels_enabled:
+      time: true
 
 processors:
 
