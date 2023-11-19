@@ -20,6 +20,7 @@ require (
 	go.opentelemetry.io/collector/extension v0.89.0
 	go.opentelemetry.io/collector/otelcol v0.89.0
 	go.opentelemetry.io/collector/processor v0.89.0
+	go.opentelemetry.io/collector/processor/batchprocessor v0.89.0
 	go.opentelemetry.io/collector/receiver v0.89.0
 	golang.org/x/sys v0.14.0
 )

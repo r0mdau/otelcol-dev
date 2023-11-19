@@ -13,6 +13,7 @@ import (
 	"go.opentelemetry.io/collector/extension"
 	"go.opentelemetry.io/collector/otelcol"
 	"go.opentelemetry.io/collector/processor"
+	batchprocessor "go.opentelemetry.io/collector/processor/batchprocessor"
 	"go.opentelemetry.io/collector/receiver"
 )
 
@@ -41,7 +42,9 @@ func components() (otelcol.Factories, error) {
 		return otelcol.Factories{}, err
 	}
 
-	factories.Processors, err = processor.MakeFactoryMap()
+	factories.Processors, err = processor.MakeFactoryMap(
+		batchprocessor.NewFactory(),
+	)
 	if err != nil {
 		return otelcol.Factories{}, err
 	}
