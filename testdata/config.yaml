@@ -23,18 +23,18 @@ exporters:
       time: true
     # https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/exporterhelper/README.md
     retry_on_failure:
-      enabled: false
+      enabled: true
       initial_interval: 5s
       max_interval: 30s
       max_elapsed_time: 300s
     sending_queue:
-      enabled: false
+      enabled: true
       num_consumers: 10
       queue_size: 1000
 
 processors:
   batch:
-    timeout: 10s
+    timeout: 1s
     send_batch_size: 1000
 
 extensions:
