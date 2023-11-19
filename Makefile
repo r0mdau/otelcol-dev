@@ -34,6 +34,10 @@ generate-logs:
 	./scripts/generate-logs.sh 100 >> testdata/access.log
 .PHONY:generate-logs
 
-prepare:
-	docker run -d --name fluent --rm -p 127.0.0.1:24224:24224 fluent/fluent-bit /fluent-bit/bin/fluent-bit -i forward -o stdout -p format=json_lines -f 1
-.PHONY:prepare
+run-fluentbit:
+	docker run --name fluentbit --rm -p 127.0.0.1:24224:24224 fluent/fluent-bit /fluent-bit/bin/fluent-bit -i forward -o stdout -p format=json_lines -f 1
+.PHONY:run-fluentbit
+
+run-fluentd:
+	docker run --name fluentd --rm -p 127.0.0.1:24224:24224 -v ./testdata/fluentd.conf:/fluentd/etc/fluentd.conf:ro fluent/fluentd:v1.16-debian-amd64-1 -c /fluentd/etc/fluentd.conf -v
+.PHONY:run-fluentd

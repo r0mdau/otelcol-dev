@@ -17,7 +17,7 @@ git clone --recurse-submodules git@github.com:r0mdau/otelcol-dev.git
 Run a [Fluent Bit](https://fluentbit.io/) instance that will receive messages over TCP port 24224 through the [fluent-forward](https://docs.fluentbit.io/manual/pipeline/outputs/forward) protocol and send the messages to stdout interface in JSON format every second
 
 ```bash
-docker run --name fluent --rm -p 127.0.0.1:24224:24224 fluent/fluent-bit /fluent-bit/bin/fluent-bit -i forward -o stdout -p format=json_lines -f 1
+make prepare
 ```
 
 Build the custom collector
@@ -41,7 +41,7 @@ bash scripts/generate-logs.sh 100 >> testdata/access.log
 Look at Fluentbit logs
 
 ```bash
-docker logs fluent
+docker logs fluentbit
 ```
 
 ### Customize the otel modules
