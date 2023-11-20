@@ -19,9 +19,10 @@ exporters:
     tls:
       enabled: true
       insecure_skip_verify: true
-    require_ack: true
+    shared_key: secret
+    require_ack: false
     tag: nginx
-    compress_gzip: true
+    compress_gzip: false
     default_labels_enabled:
       time: true
     # https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/exporterhelper/README.md

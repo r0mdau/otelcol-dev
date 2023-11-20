@@ -43,5 +43,5 @@ run-fluentbit:
 .PHONY:run-fluentbit
 
 run-fluentd:
-	docker run --name fluentd --rm -p 127.0.0.1:24224:24224 -v ./testdata/fluentd.conf:/fluentd/etc/fluentd.conf:ro -v ./testdata/certs:/fluentd/etc/certs:ro fluent/fluentd:v1.16-debian-amd64-1 -c /fluentd/etc/fluentd.conf -v
+	docker run --name fluentd --rm -h fluentd.net -p 127.0.0.1:24224:24224 -p 127.0.0.1:24224:24224/udp -v ./testdata/fluentd.conf:/fluentd/etc/fluentd.conf:ro -v ./testdata/certs:/fluentd/etc/certs:ro fluent/fluentd:v1.16-debian-amd64-1 -c /fluentd/etc/fluentd.conf -v
 .PHONY:run-fluentd
