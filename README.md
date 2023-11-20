@@ -18,20 +18,16 @@ Run a [Fluent Bit](https://fluentbit.io/) instance that will receive messages ov
 
 ```bash
 make run-fluentbit
-# for fluentd
+# for fluentd with tls
 make run-fluentd
 ```
 
-Build the custom collector
+Build & start the custom collector
 
 ```bash
-make build
-```
-
-Start the collector
-
-```bash
-./build/otelcol-dev --config testdata/config.yaml
+make run
+# with tls
+make run-tls
 ```
 
 Generate 100 log lines
@@ -44,7 +40,7 @@ Look at Fluentbit logs
 
 ```bash
 docker logs fluentbit
-# for fluentd
+# for fluentd with tls
 docker logs fluentd
 ```
 

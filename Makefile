@@ -29,6 +29,10 @@ run: build
 	./build/otelcol-dev --config testdata/config.yaml
 .PHONY:run
 
+run-tls: build
+	./build/otelcol-dev --config testdata/config.tls.yaml
+.PHONY:run-tls
+
 generate-logs:
 	@echo ">> generating logs"
 	./scripts/generate-logs.sh 100 >> testdata/access.log
