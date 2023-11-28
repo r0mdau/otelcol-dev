@@ -17,7 +17,7 @@ exporters:
     endpoint: localhost:24224
     connection_timeout: 10s
     tls:
-      enabled: true
+      insecure: false
       insecure_skip_verify: true
     shared_key: secret
     require_ack: false

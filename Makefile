@@ -33,6 +33,10 @@ run-tls: build
 	./build/otelcol-dev --config testdata/config.tls.yaml
 .PHONY:run-tls
 
+run-mtls: build
+	./build/otelcol-dev --config testdata/config.mtls.yaml
+.PHONY:run-mtls
+
 generate-logs:
 	@echo ">> generating logs"
 	./scripts/generate-logs.sh 100 >> testdata/access.log
@@ -45,3 +49,7 @@ run-fluentbit:
 run-fluentd:
 	docker run --name fluentd --rm -h fluentd.net -p 127.0.0.1:24224:24224 -p 127.0.0.1:24224:24224/udp -v ./testdata/fluentd.conf:/fluentd/etc/fluentd.conf:ro -v ./testdata/certs:/fluentd/etc/certs:ro fluent/fluentd:v1.16-debian-amd64-1 -c /fluentd/etc/fluentd.conf -v
 .PHONY:run-fluentd
+
+run-fluentd-mtls:
+	docker run --name fluentd --rm -h fluentd.net -p 127.0.0.1:24224:24224 -p 127.0.0.1:24224:24224/udp -v ./testdata/fluentd.mtls.conf:/fluentd/etc/fluentd.conf:ro -v ./testdata/certs:/fluentd/etc/certs:ro fluent/fluentd:v1.16-debian-amd64-1 -c /fluentd/etc/fluentd.conf -v
+.PHONY:run-fluentd-mtls

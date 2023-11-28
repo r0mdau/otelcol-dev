@@ -17,10 +17,15 @@ exporters:
     endpoint: localhost:24224
     connection_timeout: 10s
     tls:
-      insecure: true
-    require_ack: true
+      insecure: false
+      insecure_skip_verify: true
+      ca_file: ./testdata/certs/ca.crt
+      cert_file: ./testdata/certs/client.crt
+      key_file: ./testdata/certs/client.key
+    shared_key: secret
+    require_ack: false
     tag: nginx
-    compress_gzip: true
+    compress_gzip: false
     default_labels_enabled:
       time: true
     # https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/exporterhelper/README.md

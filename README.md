@@ -14,12 +14,14 @@ git clone --recurse-submodules git@github.com:r0mdau/otelcol-dev.git
 
 ### Starting your dev journey
 
-Run a [Fluent Bit](https://fluentbit.io/) instance that will receive messages over TCP port 24224 through the [fluent-forward](https://docs.fluentbit.io/manual/pipeline/outputs/forward) protocol and send the messages to stdout interface in JSON format every second, but if you want to work with `shared_key`, start fluentd
+Run a [Fluent Bit](https://fluentbit.io/) instance that will receive messages over TCP port 24224 through the [fluent-forward](https://docs.fluentbit.io/manual/pipeline/outputs/forward) protocol and send the messages to stdout interface in JSON format every second, but if you want to work with `shared_key`, TLS and mTLS, see subcommands to start fluentd
 
 ```bash
 make run-fluentbit
 # for fluentd with tls
 make run-fluentd
+# for fluentd with mutual tls authentication (mtls)
+make run-fluentd-mtls
 ```
 
 Build & start the custom collector
@@ -28,6 +30,8 @@ Build & start the custom collector
 make run
 # with tls
 make run-tls
+# with mtls
+make run-mtls
 ```
 
 Generate 100 log lines
@@ -36,11 +40,11 @@ Generate 100 log lines
 bash scripts/generate-logs.sh 100 >> testdata/access.log
 ```
 
-Look at Fluentbit logs
+Look at Fluent logs
 
 ```bash
 docker logs fluentbit
-# for fluentd with tls
+# for fluentd with tls/mtls
 docker logs fluentd
 ```
 
