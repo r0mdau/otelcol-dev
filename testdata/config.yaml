@@ -1,4 +1,5 @@
 receivers:
+  fluentforward:
   filelog:
     include: [ ./testdata/access.log ]
     operators:

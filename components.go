@@ -3,6 +3,7 @@
 package main
 
 import (
+	fluentforwardreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/fluentforwardreceiver"
 	fluentforwardexporter "github.com/r0mdau/fluentforwardexporter"
 
 	filelogreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver"
@@ -29,6 +30,7 @@ func components() (otelcol.Factories, error) {
 	factories.Receivers, err = receiver.MakeFactoryMap(
 		journaldreceiver.NewFactory(),
 		filelogreceiver.NewFactory(),
+		fluentforwardreceiver.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err

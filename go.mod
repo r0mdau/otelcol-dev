@@ -6,10 +6,11 @@ go 1.20
 
 replace github.com/r0mdau/fluentforwardexporter => ./fluentforwardexporter
 
-replace github.com/IBM/fluent-forward-go => ./fluentforwardgo
+// replace github.com/IBM/fluent-forward-go => ./fluentforwardgo
 
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver v0.89.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/fluentforwardreceiver v0.89.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/journaldreceiver v0.89.0
 	github.com/r0mdau/fluentforwardexporter v0.0.0-20231116020148-a2b647aac32a
 	github.com/stretchr/testify v1.8.4
@@ -22,12 +23,12 @@ require (
 	go.opentelemetry.io/collector/processor v0.89.0
 	go.opentelemetry.io/collector/processor/batchprocessor v0.89.0
 	go.opentelemetry.io/collector/receiver v0.89.0
-	golang.org/x/sys v0.14.0
+	golang.org/x/sys v0.17.0
 )
 
 require (
 	contrib.go.opencensus.io/exporter/prometheus v0.4.2 // indirect
-	github.com/IBM/fluent-forward-go v0.2.2 // indirect
+	github.com/IBM/fluent-forward-go v0.2.3-0.20240418091724-720f8df4306a // indirect
 	github.com/antonmedv/expr v1.15.3 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bmatcuk/doublestar/v4 v4.6.1 // indirect
@@ -75,7 +76,7 @@ require (
 	github.com/shoenig/go-m1cpu v0.1.6 // indirect
 	github.com/spf13/cobra v1.8.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/tinylib/msgp v1.1.8 // indirect
+	github.com/tinylib/msgp v1.1.9 // indirect
 	github.com/tklauser/go-sysconf v0.3.12 // indirect
 	github.com/tklauser/numcpus v0.6.1 // indirect
 	github.com/yusufpapurcu/wmi v1.2.3 // indirect
@@ -108,7 +109,7 @@ require (
 	go.opentelemetry.io/proto/otlp v1.0.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect
-	golang.org/x/net v0.18.0 // indirect
+	golang.org/x/net v0.21.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	gonum.org/v1/gonum v0.14.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20230822172742-b8732ec3820d // indirect
