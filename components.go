@@ -6,6 +6,7 @@ import (
 	fluentforwardexporter "github.com/r0mdau/fluentforwardexporter"
 	"go.opentelemetry.io/collector/component"
 
+	pprofextension "github.com/open-telemetry/opentelemetry-collector-contrib/extension/pprofextension"
 	filelogreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver"
 	journaldreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/journaldreceiver"
 	"go.opentelemetry.io/collector/connector"
@@ -22,11 +23,14 @@ func components() (otelcol.Factories, error) {
 	var err error
 	factories := otelcol.Factories{}
 
-	factories.Extensions, err = extension.MakeFactoryMap()
+	factories.Extensions, err = extension.MakeFactoryMap(
+		pprofextension.NewFactory(),
+	)
 	if err != nil {
 		return otelcol.Factories{}, err
 	}
 	factories.ExtensionModules = make(map[component.Type]string, len(factories.Extensions))
+	factories.ExtensionModules[pprofextension.NewFactory().Type()] = "github.com/open-telemetry/opentelemetry-collector-contrib/extension/pprofextension v0.105.0"
 
 	factories.Receivers, err = receiver.MakeFactoryMap(
 		journaldreceiver.NewFactory(),

@@ -54,6 +54,21 @@ A replace instruction is set to use local code in the `go.mod` file: `replace gi
 
 Add the module to the good factory map in the `components.go` file.
 
+## Profiling
+
+On the `pprof` branch, the collector exposes the pprof endpoints.
+
+### CPU
+
+```bash
+make run
+go tool pprof http://localhost:1777/debug/pprof/profile\?seconds\=30
+
+# example generate multiple files
+i=1; while [ $i -ne 1000 ]; do dd if=/dev/urandom bs=1000 count=1 | base64 > testdata/log/$i.log; i=$(($i+1)); done
+```
+
+
 ## Misc
 
 How-to generate the `otelcol-dev` content the first time ([doc](https://opentelemetry.io/docs/collector/custom-collector/))
