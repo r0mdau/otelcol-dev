@@ -14,7 +14,8 @@ exporters:
   debug:
     verbosity: detailed
   fluentforward:
-    endpoint: localhost:24224
+    endpoint:
+    tcp_addr: localhost:24224
     connection_timeout: 10s
     tls:
       insecure: false
