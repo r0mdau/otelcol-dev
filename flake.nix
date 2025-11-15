@@ -15,8 +15,8 @@
         };
 
         go = pkgs.go_1_23;
-      in {
-        devShells.default = pkgs.mkShell {
+
+        devShell = pkgs.mkShell {
           name = "otelcol-dev-shell";
           packages = with pkgs; [
             go
@@ -38,7 +38,7 @@
           ];
 
           shellHook = ''
-            export GOPATH=''${GOPATH:-"$PWD/.gopath"}
+            export GOPATH="$PWD/.gopath"
             export GOBIN="$GOPATH/bin"
             export PATH="$GOBIN:$PATH"
             export GO111MODULE=on
@@ -46,5 +46,8 @@
             echo "Loaded otelcol-dev nix shell (Go ${go.version})"
           '';
         };
+      in {
+        devShells.default = devShell;
+        packages.default = devShell;
       });
 }

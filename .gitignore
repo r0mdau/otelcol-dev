@@ -3,3 +3,4 @@ access.log
 .vscode/
 __debug_*
 .direnv/
+.gopath/
