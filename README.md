@@ -12,6 +12,22 @@ Clone the repo and the submodule
 git clone --recurse-submodules git@github.com:r0mdau/otelcol-dev.git
 ```
 
+### Use the reproducible Nix dev shell
+
+The repository exposes a `flake.nix` that brings in Go, `golint`, `golangci-lint`, `docker`, `protobuf`, `make`, and other helpers required by the Makefiles.
+
+1. Install Nix ≥ 2.18 with the `nix-command` and `flakes` experimental features enabled.
+2. From the repo root, start the shell (this configures `GOPATH` under `.gopath` so tools like `go install` remain scoped to the repo):
+
+    ```bash
+    nix develop
+    ```
+
+    If you prefer `direnv`, run `direnv allow` once and it will automatically enter/leave the shell.
+3. Run the usual `make build`, `make lint`, etc. All tooling, including Docker CLI for the fluent* helpers, is already on `PATH`.
+
+> **Heads up:** the shell currently pins `pkgs.go_1_23` because Go 1.24 (the version declared in `go.mod`) is not yet packaged in nixpkgs 24.05. As soon as nixpkgs ships Go 1.24, bump the `go` binding in `flake.nix` to keep the versions aligned.
+
 ### Starting your dev journey
 
 Run a [Fluent Bit](https://fluentbit.io/) instance that will receive messages over TCP port 24224 through the [fluent-forward](https://docs.fluentbit.io/manual/pipeline/outputs/forward) protocol and send the messages to stdout interface in JSON format every second, but if you want to work with `shared_key`, TLS and mTLS, see subcommands to start fluentd
