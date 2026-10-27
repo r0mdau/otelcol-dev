@@ -28,7 +28,7 @@ exporters:
     tag: nginx
     compress_gzip: false
     default_labels_enabled:
-      time: true
+      timestamp: true
     # https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/exporterhelper/README.md
     retry_on_failure:
       enabled: true
