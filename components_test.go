@@ -3,37 +3,51 @@
 package main
 
 import (
-	"github.com/stretchr/testify/assert"
-	"go.opentelemetry.io/collector/component/componenttest"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/component/componenttest"
 )
+
+type aliasProvider interface{ DeprecatedAlias() component.Type }
+
+// assertFactoryKey checks that a factory is registered under its type, or
+// under its deprecated alias (e.g. "filelog" for the "file_log" receiver).
+func assertFactoryKey(t *testing.T, key component.Type, factory component.Factory) {
+	t.Helper()
+	if ap, ok := factory.(aliasProvider); ok && key == ap.DeprecatedAlias() {
+		return
+	}
+	assert.Equal(t, key, factory.Type())
+}
 
 func TestValidateConfigs(t *testing.T) {
 	factories, err := components()
 	assert.NoError(t, err)
 
 	for k, factory := range factories.Receivers {
-		assert.Equal(t, k, factory.Type())
+		assertFactoryKey(t, k, factory)
 		assert.NoError(t, componenttest.CheckConfigStruct(factory.CreateDefaultConfig()))
 	}
 
 	for k, factory := range factories.Processors {
-		assert.Equal(t, k, factory.Type())
+		assertFactoryKey(t, k, factory)
 		assert.NoError(t, componenttest.CheckConfigStruct(factory.CreateDefaultConfig()))
 	}
 
 	for k, factory := range factories.Exporters {
-		assert.Equal(t, k, factory.Type())
+		assertFactoryKey(t, k, factory)
 		assert.NoError(t, componenttest.CheckConfigStruct(factory.CreateDefaultConfig()))
 	}
 
 	for k, factory := range factories.Connectors {
-		assert.Equal(t, k, factory.Type())
+		assertFactoryKey(t, k, factory)
 		assert.NoError(t, componenttest.CheckConfigStruct(factory.CreateDefaultConfig()))
 	}
 
 	for k, factory := range factories.Extensions {
-		assert.Equal(t, k, factory.Type())
+		assertFactoryKey(t, k, factory)
 		assert.NoError(t, componenttest.CheckConfigStruct(factory.CreateDefaultConfig()))
 	}
 }
